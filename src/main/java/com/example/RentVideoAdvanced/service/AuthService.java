@@ -24,6 +24,9 @@ public class AuthService {
     UserRepository userRepository;
 
     @Autowired
+    JWTService jwtService;
+
+    @Autowired
     AuthenticationManager authenticationManager;
 
     public AuthResponse register(RegisterRequest request) {
@@ -40,14 +43,26 @@ public class AuthService {
             .build();
 
         userRepository.save(user);
-        
-        return AuthResponse.builder().build();
+
+        String jwtToken = jwtService.generateToken(user);
+        userRepository.save(user);
+        return AuthResponse
+            .builder()
+            .accessToken(jwtToken)
+            .build();
     }
 
     public AuthResponse login(AuthRequest request) {
         authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+            new UsernamePasswordAuthenticationToken(
+                request.getEmail(), 
+                request.getPassword())
         );
-        return AuthResponse.builder().build();
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("User does not exits with email: " + request.getEmail()));
+        String jwtToken = jwtService.generateToken(user);
+        return AuthResponse
+            .builder()
+            .accessToken(jwtToken)
+            .build();
     }
 }

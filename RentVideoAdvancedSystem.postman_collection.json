@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "1a20a5ed-fcb5-4a5e-a683-22b0ea6e3c19",
+		"name": "RentVideoAdvancedSystem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39118171"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Joe\",\n    \"email\": \"bj@email.com\",\n    \"password\": \"abc\",\n    \"role\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"bj@email.com\",\n    \"password\": \"abc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/video",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiakBlbWFpbC5jb20iLCJpYXQiOjE3NTExMTM0MjgsImV4cCI6MTc1MTE5OTgyOH0.x1T-h45LlZSuYXlWkeZNRM2VocMeT9_XbKoeeYH-E8s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"How to book a train ticket\",\n    \"director\": \"Carl Henry\",\n    \"genre\": \"education\",\n    \"availabilityStatus\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/video",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/video/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiakBlbWFpbC5jb20iLCJpYXQiOjE3NTExMTM0MjgsImV4cCI6MTc1MTE5OTgyOH0.x1T-h45LlZSuYXlWkeZNRM2VocMeT9_XbKoeeYH-E8s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/video/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/video",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiakBlbWFpbC5jb20iLCJpYXQiOjE3NTExMTM0MjgsImV4cCI6MTc1MTE5OTgyOH0.x1T-h45LlZSuYXlWkeZNRM2VocMeT9_XbKoeeYH-E8s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/video",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/video/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiakBlbWFpbC5jb20iLCJpYXQiOjE3NTExMTM0MjgsImV4cCI6MTc1MTE5OTgyOH0.x1T-h45LlZSuYXlWkeZNRM2VocMeT9_XbKoeeYH-E8s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"How to book a train ticket\",\n    \"director\": \"Lorry Henry\",\n    \"genre\": \"education\",\n    \"availabilityStatus\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/video/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/video/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiakBlbWFpbC5jb20iLCJpYXQiOjE3NTExMTM0MjgsImV4cCI6MTc1MTE5OTgyOH0.x1T-h45LlZSuYXlWkeZNRM2VocMeT9_XbKoeeYH-E8s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/video/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"video",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/videos/1/return",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiakBlbWFpbC5jb20iLCJpYXQiOjE3NTExMjEwMjcsImV4cCI6MTc1MTIwNzQyN30.Bo9fEY8uFo1MfklkoV70QydLKxU6Zp8FM7Vz3waspYs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/videos/3/return",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"videos",
+						"3",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/videos/1/rent",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiakBlbWFpbC5jb20iLCJpYXQiOjE3NTExMjEwMjcsImV4cCI6MTc1MTIwNzQyN30.Bo9fEY8uFo1MfklkoV70QydLKxU6Zp8FM7Vz3waspYs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/videos/2/rent",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"videos",
+						"2",
+						"rent"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

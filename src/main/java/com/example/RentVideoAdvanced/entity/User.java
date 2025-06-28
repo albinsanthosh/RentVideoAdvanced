@@ -1,5 +1,6 @@
 package com.example.RentVideoAdvanced.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,10 +10,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.RentVideoAdvanced.entity.enums.Role;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,16 +31,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements UserDetails{
-    
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String password;
-    private String firstName; 
+    private String firstName;
     private String lastName;
     private Role role;
+    @ManyToMany
+    @JoinTable(name = "user_video_rentals", 
+    joinColumns = @JoinColumn(name = "user_id"), 
+    inverseJoinColumns = @JoinColumn(name = "video_id"))
+    private List<Video> rentedVideos = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -44,5 +55,5 @@ public class User implements UserDetails{
     @Override
     public String getUsername() {
         return email;
-    } 
+    }
 }

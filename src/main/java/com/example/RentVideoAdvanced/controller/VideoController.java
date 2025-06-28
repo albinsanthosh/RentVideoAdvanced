@@ -59,4 +59,19 @@ public class VideoController {
         videoService.deleteVideoById(id);
         return ResponseEntity.ok("Video deleted with id: " + id);
     }
+
+    // Rent Video by Id REST API
+    @PostMapping("/videos/{videoId}/rent")
+    public ResponseEntity<String> rentVideo(@PathVariable Long videoId) {
+        videoService.rentVideo(videoId);
+        return ResponseEntity.ok("Video added with id: " + videoId);
+    }
+
+    // Return rented Video by Id REST API
+    @PostMapping("/videos/{videoId}/return")
+    public ResponseEntity<String> returnVideo(@PathVariable Long videoId) {
+        videoService.returnVideo(videoId);
+        return ResponseEntity.ok("Video returned with id: " + videoId);
+    }
+    
 }
