@@ -1,6 +1,7 @@
 package com.example.RentVideoAdvanced.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +13,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException exception){
         return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
+        .body(exception.getMessage());
+    }
+
+    @ExceptionHandler({BookNotAvailableException.class})
+    public ResponseEntity<Object> handleBookNotAvailableException(BookNotAvailableException exception){
+        return ResponseEntity
+        .status(HttpStatus.CONFLICT)
         .body(exception.getMessage());
     }
 

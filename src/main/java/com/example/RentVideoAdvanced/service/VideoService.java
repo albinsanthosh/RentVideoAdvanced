@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.RentVideoAdvanced.entity.User;
 import com.example.RentVideoAdvanced.entity.Video;
+import com.example.RentVideoAdvanced.exception.BookNotAvailableException;
 import com.example.RentVideoAdvanced.exception.DuplicateRentalVideoException;
 import com.example.RentVideoAdvanced.exception.RentalLimitExceededException;
 import com.example.RentVideoAdvanced.exception.ResourceNotFoundException;
@@ -88,6 +89,15 @@ public class VideoService {
             throw new DuplicateRentalVideoException("User has already rented this video.");
         }
 
+        // Video availability status setting
+        if(video.getAvailabilityStatus()){
+            video.setAvailabilityStatus(false);
+            videoRepository.save(video);
+        }
+        else{
+            throw new BookNotAvailableException("Book not available.");
+        }
+
         // Add the video
         user.getRentedVideos().add(video);
         video.getRentedByUsers().add(user); // if bidirectional
@@ -110,5 +120,9 @@ public class VideoService {
         video.getRentedByUsers().remove(user); // if bidirectional
 
         userService.save(user);
+
+        // Video availability status setting
+        video.setAvailabilityStatus(true);
+        videoRepository.save(video);
     }
 }
